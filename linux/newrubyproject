@@ -1,0 +1,30 @@
+#!/bin/bash
+set +x
+
+GIT=`which git`
+projectname=""
+clone="git@github.com:gnuchu/ruby_starter.git"
+
+if [ -z "$1" ]
+then
+  echo "Enter the project name you want to create: "
+  read projectname
+else
+  projectname=$1
+fi
+
+dirpath="${projectname}"
+mkdir -p "${dirpath}"
+savedir=`pwd`
+cd "${dirpath}"
+
+${GIT} clone "${clone}" .
+rm -rf .git
+
+cat /dev/null > README.md
+
+${GIT} init
+${GIT} add .
+${GIT} commit -am "Initial import"
+
+cd ${savedir}
