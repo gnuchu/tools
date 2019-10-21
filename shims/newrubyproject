@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
+set -x 
 
-exec ../linux/newrubyproject $*
+BASEDIR=$(dirname "$0")
+exec ${BASEDIR}/../linux/newrubyproject $*
